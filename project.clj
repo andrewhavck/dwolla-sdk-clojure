@@ -4,4 +4,8 @@
   :license {:name "The MIT License (MIT)"
             :url "http://opensource.org/licenses/MIT"}
   :dependencies [[org.clojure/clojure "1.4.0"]
-                 [clj-http "0.6.4"]])
+                 [clj-http "0.6.4"]
+                 [midje "1.4.0"]
+                 [bultitude "0.1.7"]
+                 [lein-midje "2.0.4"]])
+
