@@ -5,7 +5,7 @@
             :url "http://opensource.org/licenses/MIT"}
   :dependencies [[org.clojure/clojure "1.4.0"]
                  [clj-http "0.6.4"]
-                 [midje "1.4.0"]
+                 [midje "1.5-beta1"]
                  [bultitude "0.1.7"]
-                 [lein-midje "2.0.4"]])
+                 [lein-midje "3.0-beta1"]])
 
