@@ -11,10 +11,11 @@
 
 (defn encode [url] (URLEncoder/encode url))
 
-(defmulti req :type)
-(defmethod req :account_info [req] (encode (account_info (:msg req))))
-(defmethod req :basic_info [req] (encode (basic_info (:msg req))))
+(defmulti #^{:private true} get-api-req :type)
+(defmethod get-api-req :account_info [req] (account_info  (:msg req)))
+(defmethod get-api-req :basic_info [req] (basic_info (:msg req)))
 
+(defn req [request] (encode (get-api-req request)))
 
 
 
