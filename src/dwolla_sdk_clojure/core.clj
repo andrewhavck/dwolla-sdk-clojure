@@ -16,7 +16,9 @@
 (defmethod get-api-req :basic_info [req] (basic_info (:msg req)))
 
 (defn json? [resp] (= "application/json; charset=utf-8" ((:headers resp) "content-type")))
-(defn response [resp] (merge {:Request-time (:request-time resp) :Status (:status resp)} (read-str (:body resp) :key-fn keyword)))
+(defn response [resp] (merge {:Request-time (:request-time resp)
+                              :Status (:status resp)}
+                             (read-str (:body resp) :key-fn keyword)))
 
 (defn req [req] (response (client/get (get-api-req req))))
 
