@@ -11,16 +11,19 @@
        "?client_id=" client_id
        "&client_secret=" client_secret))
 
-(defmulti get-api-req :type)
-(defmethod get-api-req :account_info [req] (account_info  (:msg req)))
-(defmethod get-api-req :basic_info [req] (basic_info (:msg req)))
+(defmulti api-get :end_point)
+(defmethod api-get :account_info [req] (account_info  (:req req)))
+(defmethod api-get :basic_info [req] (basic_info (:req req)))
 
 (defn json? [resp] (= "application/json; charset=utf-8" ((:headers resp) "content-type")))
+
 (defn response [resp] (merge {:Request-time (:request-time resp)
                               :Status (:status resp)}
                              (read-str (:body resp) :key-fn keyword)))
 
-(defn req [req] (response (client/get (get-api-req req))))
+(defmulti api (fn [_ req & _] (map? req)))
+(defmethod api false [end_point req]
+  (response (client/get (api-get {:end_point end_point :req req}))))
 
 
 
