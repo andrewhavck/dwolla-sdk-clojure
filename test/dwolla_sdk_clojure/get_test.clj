@@ -3,12 +3,14 @@
   (:use [dwolla-sdk-clojure.get])
   (:use [midje.sweet]))
 
-(fact "Account info request includes correct token"
+; Users tests
+
+(fact "Account info request has token"
       (let [token "token"]
         (api-get {:end_point :account_info :req token})
          => (str domain "users/?oauth_token=" token)))
 
-(fact "Basic info request includes correct params"
+(fact "Basic info request has client id, client secret, and account identifier"
       (let [client_id "id"
             client_secret "secret"
             account_identifier "identifier"]
@@ -17,7 +19,7 @@
              "?client_id=" client_id
              "&client_secret=" client_secret)))
 
-(fact "Nearby request includes correct params"
+(fact "Nearby request has client id, client secret, lat, and long"
       (let [client_id "id"
             client_secret "secret"
             lat "90"
@@ -28,3 +30,10 @@
              "&client_secret=" client_secret
              "&latitude=" lat
              "&longitude=" long)))
+
+; Balance
+
+(fact "Balance has token"
+      (let [token "token"]
+        (api-get {:end_point :balance :req token}) =>
+        (str domain "balance?oauth_token=" token)))

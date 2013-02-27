@@ -15,7 +15,7 @@
 (defmethod api-req true [call]
   (let [request (api-post call)]
     (client/post (:url request)
-                 {:body (write-str (:req (:post request)))
+                 {:body (-> request :post :req write-str)
                   :content-type :json})))
 
 (defn api [end_point req] (response (api-req {:end_point end_point :req req})))
