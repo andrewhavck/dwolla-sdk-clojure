@@ -1,6 +1,6 @@
 # `dwolla-sdk-clojure` 
 
-A simple Clojure library for the Dwolla API
+A simple Clojure library that wraps the [Dwolla API](http://developers.dwolla.com).
 
 ## Usage
 
