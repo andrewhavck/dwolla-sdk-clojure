@@ -4,8 +4,6 @@
   (:use [dwolla-sdk-clojure.get])
   (:require [clj-http.client :as client]))
 
-(defn json? [resp] (= "application/json; charset=utf-8" ((:headers resp) "content-type")))
-
 (defn response [resp] (merge {:Request-time (:request-time resp)
                               :Status (:status resp)}
                              (read-str (:body resp) :key-fn keyword)))
