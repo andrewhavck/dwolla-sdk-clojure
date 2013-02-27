@@ -3,7 +3,27 @@
   (:use [dwolla-sdk-clojure.get])
   (:use [midje.sweet]))
 
-; Users tests
+; Balance
+
+(fact "Balance has token"
+      (let [token "token"]
+        (api-get {:end_point :balance :req token}) =>
+        (str domain "balance?oauth_token=" token)))
+
+; Request
+
+(fact "Request by id has token and request id"
+      (let [token "token"
+            request_id "id"]
+        (api-get {:end_point :request_by_id :req [token request_id]}) =>
+        (str domain "requests/" request_id "?oauth_token=" token)))
+
+(fact "Pending has token"
+      (let [token "token"]
+        (api-get {:end_point :pending :req token}) =>
+        (str domain "requests/?oauth_token=" token)))
+
+; Users
 
 (fact "Account info request has token"
       (let [token "token"]
@@ -30,10 +50,3 @@
              "&client_secret=" client_secret
              "&latitude=" lat
              "&longitude=" long)))
-
-; Balance
-
-(fact "Balance has token"
-      (let [token "token"]
-        (api-get {:end_point :balance :req token}) =>
-        (str domain "balance?oauth_token=" token)))

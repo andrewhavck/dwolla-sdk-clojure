@@ -2,6 +2,19 @@
   (:use [dwolla-sdk-clojure.domain])
   (:use [clojure.data.json :only [read-str]]))
 
+; Balance
+
+(defn- balance [token]
+  (str domain "balance?oauth_token=" token))
+
+;Requests
+
+(defn- request_by_id [[token request_id]]
+  (str domain "requests/" request_id "?oauth_token=" token))
+
+(defn- pending [token]
+  (str domain "requests/?oauth_token=" token))
+
 ; Users
 
 (defn- account_info [token]
@@ -18,17 +31,13 @@
        "&latitude=" lat
        "&longitude=" long))
 
-; Balance
-
-(defn- balance [token]
-  (str domain "balance?oauth_token=" token))
-
 (defmulti api-get :end_point)
-
 (defmethod api-get :balance [req] (balance (:req req)))
-
+(defmethod api-get :request_by_id [req] (request_by_id (:req req)))
 (defmethod api-get :account_info [req] (account_info  (:req req)))
 (defmethod api-get :basic_info [req] (basic_info (:req req)))
 (defmethod api-get :nearby [req] (nearby (:req req)))
+(defmethod api-get :pending [req] (pending (:req req)))
+
 
 
