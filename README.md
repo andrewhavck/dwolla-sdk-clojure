@@ -1,6 +1,53 @@
-# Dwolla API for Clojure
+# `dwolla-sdk-clojure` 
 
-A simple Clojure library for using the Dwolla API
+A simple Clojure library for the Dwolla API
+
+## Usage
+
+The main api functionality is provided by the
+`dwolla-sdk-clojure.core` namespace.
+
+Require it in the REPL:
+
+```clojure
+(require '[dwolla-sdk-clojure.core :as dwolla])
+```
+
+Require it in your application:
+
+```clojure
+(ns my-app.core
+  (:require [dwolla-sdk-clojure.core :as dwolla]))
+```
+
+The client functions off a simple interface that only requires the desired endpoint and request.
+
+Below is an example send request (post):
+
+```clojure
+(dwolla/api :send {:oauth_token "" :pin "" :destinationId "" :amount ""})
+```
+
+Here is a simple account info request (get):
+
+```clojure
+(dwolla/api :account_info "your oauth token")
+```
+
+Multi parameter get requests have their parameters passed in via a vector:
+
+```clojure
+(dwolla/api :nearby ["client_id" "client_secret" "lat" "long"])
+```
+
+All results are returned as simple Clojure maps:
+
+```clojure
+{:Response nil, :Message "Invalid access token.", :Success false, :Request-time 321 :Status 200}
+```
+
+## TODO: More examples
+
 
 ## License
 
