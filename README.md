@@ -20,7 +20,7 @@ Require it in your application:
   (:require [dwolla-sdk-clojure.core :as dwolla]))
 ```
 
-The client functions off a simple interface that only requires the desired endpoint and request.
+The client uses an interface that requires an endpoint and message.
 
 Below is an example send request (post):
 
@@ -28,19 +28,19 @@ Below is an example send request (post):
 (dwolla/api :send {:oauth_token "" :pin "" :destinationId "" :amount ""})
 ```
 
-Here is a simple account info request (get):
+Here is an account info request (get):
 
 ```clojure
 (dwolla/api :account_info "your oauth token")
 ```
 
-Multi parameter get requests have their parameters passed in via a vector:
+Multi parameter get request arguments are passed in as a vector:
 
 ```clojure
 (dwolla/api :nearby ["client_id" "client_secret" "lat" "long"])
 ```
 
-All results are returned as simple Clojure maps:
+All results are returned as a Clojure map:
 
 ```clojure
 {:Response nil, :Message "Invalid access token.", :Success false, :Request-time 321 :Status 200}
