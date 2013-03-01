@@ -4,27 +4,32 @@
 
 ; Balance
 
-(defn- balance [token]
+(defn- balance [{token :oauth_token}]
   (str domain "balance?oauth_token=" token))
 
 ;Requests
 
-(defn- request_by_id [[token request_id]]
+(defn- request_by_id [{token :oauth_token request_id :request_id}]
   (str domain "requests/" request_id "?oauth_token=" token))
 
-(defn- pending [token]
+(defn- pending [{token :oauth_token}]
   (str domain "requests/?oauth_token=" token))
 
 ; Users
 
-(defn- account_info [token]
+(defn- account_info [{token :oauth_token}]
   (str domain "users/?oauth_token=" token))
 
-(defn- basic_info [[client_id client_secret account_identifier]]
+(defn- basic_info [{client_id :client_id 
+                    client_secret :client_secret
+                    account_identifier :account_identifier}]
   (str domain "users/" account_identifier "?client_id=" client_id
        "&client_secret=" client_secret))
 
-(defn- nearby [[client_id client_secret lat long]]
+(defn- nearby [{client_id :client_id
+                client_secret :client_secret
+                lat :lat 
+                long :long}]
   (str domain "users/nearby?"
        "client_id=" client_id
        "&client_secret=" client_secret

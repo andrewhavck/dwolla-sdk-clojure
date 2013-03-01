@@ -22,28 +22,36 @@ Require it in your application:
 
 The client uses an interface that requires an endpoint and message.
 
-Below is an example send request (post):
+Below is an example send request:
 
 ```clojure
 (dwolla/api :send {:oauth_token "" :pin "" :destinationId "" :amount ""})
 ```
 
-Here is an account info request (get):
+Both get and post requests use the same interface.
+
+Here is an account info request:
 
 ```clojure
-(dwolla/api :account_info "your oauth token")
+(dwolla/api :account_info {:oauth_token "your oauth token"})
 ```
 
-Multi parameter get request arguments are passed in as a vector:
+This is a nearby request:
 
 ```clojure
-(dwolla/api :nearby ["client_id" "client_secret" "lat" "long"])
+(dwolla/api :nearby {:client_id "" :client_secret "" :lat "" :long ""})
 ```
 
 All results are returned as a Clojure map:
 
 ```clojure
 {:Response nil, :Message "Invalid access token.", :Success false, :Request-time 321 :Status 200}
+```
+
+If the endpoint does not exist an error message is returned
+
+```clojure
+{:Request-time 0 :Status "Failed" :Message "Invalid endpoint."}
 ```
 
 ## TODO: More examples

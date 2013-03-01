@@ -7,7 +7,7 @@
 
 (fact "Balance has token"
       (let [token "token"]
-        (api-get {:end_point :balance :req token}) =>
+        (api-get {:end_point :balance :req {:oauth_token token}}) =>
         (str domain "balance?oauth_token=" token)))
 
 ; Request
@@ -15,26 +15,30 @@
 (fact "Request by id has token and request id"
       (let [token "token"
             request_id "id"]
-        (api-get {:end_point :request_by_id :req [token request_id]}) =>
+        (api-get {:end_point :request_by_id 
+                  :req {:oauth_token token :request_id request_id}}) =>
         (str domain "requests/" request_id "?oauth_token=" token)))
 
 (fact "Pending has token"
       (let [token "token"]
-        (api-get {:end_point :pending :req token}) =>
+        (api-get {:end_point :pending :req {:oauth_token token}}) =>
         (str domain "requests/?oauth_token=" token)))
 
 ; Users
 
 (fact "Account info request has token"
       (let [token "token"]
-        (api-get {:end_point :account_info :req token})
-         => (str domain "users/?oauth_token=" token)))
+        (api-get {:end_point :account_info :req {:oauth_token token}}) => 
+        (str domain "users/?oauth_token=" token)))
 
 (fact "Basic info request has client id, client secret, and account identifier"
       (let [client_id "id"
             client_secret "secret"
             account_identifier "identifier"]
-        (api-get {:end_point :basic_info :req [client_id client_secret account_identifier]}) =>
+        (api-get {:end_point :basic_info 
+                  :req {:client_id client_id 
+                        :client_secret client_secret 
+                        :account_identifier account_identifier}}) =>
         (str domain "users/" account_identifier
              "?client_id=" client_id
              "&client_secret=" client_secret)))
@@ -44,7 +48,11 @@
             client_secret "secret"
             lat "90"
             long "90"]
-        (api-get {:end_point :nearby :req [client_id client_secret lat long]}) =>
+        (api-get {:end_point :nearby 
+                  :req {:client_id client_id 
+                        :client_secret client_secret
+                        :lat lat 
+                        :long long}}) =>
         (str domain "users/nearby"
              "?client_id=" client_id
              "&client_secret=" client_secret
