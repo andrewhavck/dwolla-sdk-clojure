@@ -4,11 +4,16 @@
   (:use [midje.sweet]))
 
 (fact "Create useful json response"
-  (response {:request-time 500
-             :status 200
-             :body "{\"Success\":false,\"Message\":\"Invalid access token.\",\"Response\":null}"}) =>
+  (create-resp {:request-time 500
+                :status 200
+                :body 
+                "{\"Success\":false,\"Message\":\"Invalid access token.\",\"Response\":null}"}) =>
              {:Request-time 500
               :Status 200
               :Message "Invalid access token."
               :Response nil
               :Success false})
+
+(fact "Create useful json response for empty request"
+      (response '()) =>
+      {:Request-time 0 :Status "Failed" :Message "Invalid endpoint."})

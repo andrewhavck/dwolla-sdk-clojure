@@ -4,17 +4,27 @@
   (:use [dwolla-sdk-clojure.get])
   (:require [clj-http.client :as client]))
 
-(defn response [resp] (merge {:Request-time (:request-time resp)
-                              :Status (:status resp)}
-                             (read-str (:body resp) :key-fn keyword)))
+(defn create-resp [resp] 
+  (merge {:Request-time (:request-time resp)
+          :Status (:status resp)}
+          (read-str (:body resp) :key-fn keyword)))
 
-(defn- get [call] (client/get (api-get call)))
-(defn- post [call]
-  (let [request (api-post call)]
-    (client/post (:url request)
-                 {:body (-> request :post :req write-str)
-                  :content-type :json})))
+(defn- do-get [request] (client/get request))
 
-(defn api-req [call] (take-while false) [get post])
+(defn- do-post [request]
+  (client/post (:url request)
+               {:body (-> request :post :req write-str)
+                :content-type :json}))
+
+(defn api-req [msg] (remove nil? 
+                        (map (fn [call client] 
+                           (if-let [req (call msg)]
+                                    (client req)))
+                                    [api-get api-post] [do-get do-post])))
+
+(defn response [resp]
+  (if (empty? resp)
+    {:Request-time 0 :Status "Failed" :Message "Invalid endpoint."}
+    (apply create-resp resp)))
 
 (defn api [end_point req] (response (api-req {:end_point end_point :req req})))
