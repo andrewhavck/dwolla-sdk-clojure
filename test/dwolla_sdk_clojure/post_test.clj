@@ -6,6 +6,7 @@
 (defn- make-post [end_point req] {:end_point end_point :req req})
 (defn- get-post [post] (-> post :post :req))
 
+
 ;Funding Sources
 
 (fact "Add includes token, acc number, routing number, acc type, and name"
@@ -48,6 +49,7 @@
         (:url post) => (str domain "fundingsources/" funding_id "/withdraw")
         (get-post post) => req))
 
+
 ;Requests
 
 (fact "Cancel includes token, request id - request id in url"
@@ -57,6 +59,25 @@
             post (api-post (make-post :cancel req))]
          (:url post) => (str domain "requests/" request_id "/cancel")
          (get-post post) => req))
+
+(fact "Fulfill includes token, pin, amount, request id - request id in url"
+      (let [request_id "1"
+            req {:oauth_token "token"
+                 :pin "1234"
+                 :amount "10.00"
+                 :request_id request_id}
+            post (api-post (make-post :fulfill req))]
+         (:url post) => (str domain "requests/" request_id "/fulfill")
+         (get-post post) => req))
+
+(fact "Request includes token, source id, amount"
+      (let [req {:oauth_token "token"
+                 :source_id "1234"
+                 :amount "10.00"}
+            post (api-post (make-post :request req))]
+         (:url post) => (str domain "requests/")
+         (get-post post) => req))
+      
       
 ; Transactions
 

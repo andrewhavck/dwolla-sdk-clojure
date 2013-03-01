@@ -10,6 +10,7 @@
         (api-get {:end_point :balance :req {:oauth_token token}}) =>
         (str domain "balance?oauth_token=" token)))
 
+
 ;Funding sources
 
 (fact "Funding sources has token and funding id"
@@ -24,6 +25,7 @@
         (api-get {:end_point :funding_sources_listing :req {:oauth_token token}}) =>
         (str domain "fundingsources/?oauth_token=" token)))
 
+
 ; Request
 
 (fact "Request by id has token and request id"
@@ -37,6 +39,7 @@
       (let [token "token"]
         (api-get {:end_point :pending :req {:oauth_token token}}) =>
         (str domain "requests/?oauth_token=" token)))
+
 
 ; Users
 

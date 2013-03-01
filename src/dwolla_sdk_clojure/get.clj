@@ -2,10 +2,12 @@
   (:use [dwolla-sdk-clojure.domain])
   (:use [clojure.data.json :only [read-str]]))
 
+
 ; Balance
 
 (defn- balance [{token :oauth_token}]
   (str domain "balance?oauth_token=" token))
+
 
 ; Funding sources
 
@@ -15,6 +17,7 @@
 (defn- funding_sources_listing [{token :oauth_token}]
   (str domain "fundingsources/?oauth_token=" token))
 
+
 ;Requests
 
 (defn- request_by_id [{token :oauth_token request_id :request_id}]
@@ -22,6 +25,7 @@
 
 (defn- pending [{token :oauth_token}]
   (str domain "requests/?oauth_token=" token))
+
 
 ; Users
 

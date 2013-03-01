@@ -2,34 +2,45 @@
   (:use [dwolla-sdk-clojure.domain])
   (:use [clojure.data.json :only [read-str write-str]]))
 
+(defn- post_msg [req type end_point id]
+    {:url (str domain type "/" id "/" end_point)
+     :post req})
+
+
 ;Funding Sources
 
-(defn- get_funding_id [req] (-> req :req :funding_id))
-
-(defn- funding_url [req end_point]
-  (let [funding_id (get_funding_id req)]
-    {:url (str domain "fundingsources/" funding_id "/" end_point)
-     :post req}))
+(defn- funding_post [req end_point]
+  (post_msg req "fundingsources" end_point (-> req :req :funding_id)))
 
 (defn- add_funding_source [req]
   {:url (str domain "fundingsources/")
    :post req})
 
 (defn- deposit [req]
-  (funding_url req "deposit"))
+  (funding_post req "deposit"))
 
 (defn- verify [req]
-  (funding_url req "verify"))
+  (funding_post req "verify"))
 
 (defn- withdraw [req]
-  (funding_url req "withdraw"))
+  (funding_post req "withdraw"))
+
 
 ;Requests
 
+(defn- request_post [req end_point]
+  (post_msg req "requests" end_point (-> req :req :request_id)))
+
 (defn- cancel [req]
-  (let [request_id (:request_id (:req req))]
-    {:url (str domain "requests/" request_id "/cancel")
-     :post req}))
+  (request_post req "cancel"))
+
+(defn- fulfill [req]
+  (request_post req "fulfill"))
+
+(defn- request [req]
+  {:url (str domain "requests/")
+   :post req})
+
 
 ;Transactions
 
@@ -43,6 +54,8 @@
 (defmethod api-post :verify [req] (verify req))
 (defmethod api-post :withdraw [req] (withdraw req))
 (defmethod api-post :cancel [req] (cancel req))
+(defmethod api-post :fulfill [req] (fulfill req))
+(defmethod api-post :request [req] (request req))
 (defmethod api-post :send [req] (send- req))
 (defmethod api-post :default [req] false)
   
