@@ -4,6 +4,11 @@
 
 ;Funding Sources
 
+(defn- funding_url [req end_point]
+  (let [funding_id (get_funding_id req)]
+    {:url (str domain "fundingsources/" funding_id "/" end_point)
+     :post req}))
+
 (defn- get_funding_id [req] (-> req :req :funding_id))
 
 (defn- add_funding_source [req]
@@ -11,19 +16,13 @@
    :post req})
 
 (defn- deposit [req]
-  (verify_funding_req req "deposit"))
+  (funding_url req "deposit"))
 
 (defn- verify [req]
-  (verify_funding_req req "verify"))
+  (funding_url req "verify"))
 
 (defn- withdraw [req]
-  (verify_funding_req req "withdraw"))
-
-
-(defn- verify_funding_req [req end_point]
-  (let [funding_id (get_funding_id req)]
-    {:url (str domain "fundingsources/" funding_id "/" end_point)
-     :post req}))
+  (funding_url req "withdraw"))
 
 ;Requests
 
