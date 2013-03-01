@@ -48,7 +48,7 @@ All results are returned as a Clojure map:
 {:Response nil, :Message "Invalid access token.", :Success false, :Request-time 321 :Status 200}
 ```
 
-If the endpoint does not exist an error message is returned
+If the endpoint does not exist a generic error message is returned
 
 ```clojure
 {:Request-time 0 :Status "Failed" :Message "Invalid endpoint."}
