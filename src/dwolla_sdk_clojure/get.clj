@@ -7,6 +7,14 @@
 (defn- balance [{token :oauth_token}]
   (str domain "balance?oauth_token=" token))
 
+; Funding sources
+
+(defn- funding_sources_by_id [{token :oauth_token funding_id :funding_id}]
+  (str domain "fundingsources/" funding_id "?oauth_token=" token))
+
+(defn- funding_sources_listing [{token :oauth_token}]
+  (str domain "fundingsources/?oauth_token=" token))
+
 ;Requests
 
 (defn- request_by_id [{token :oauth_token request_id :request_id}]
@@ -38,12 +46,11 @@
 
 (defmulti api-get :end_point)
 (defmethod api-get :balance [req] (balance (:req req)))
+(defmethod api-get :funding_sources_by_id [req] (funding_sources_by_id (:req req)))
+(defmethod api-get :funding_sources_listing [req] (funding_sources_listing (:req req)))
 (defmethod api-get :request_by_id [req] (request_by_id (:req req)))
 (defmethod api-get :account_info [req] (account_info  (:req req)))
 (defmethod api-get :basic_info [req] (basic_info (:req req)))
 (defmethod api-get :nearby [req] (nearby (:req req)))
 (defmethod api-get :pending [req] (pending (:req req)))
 (defmethod api-get :default [req] false)
-
-
-
