@@ -20,8 +20,7 @@ Require it in your application:
   (:require [dwolla-sdk-clojure.core :as dwolla]))
 ```
 
-The client is a thin interface that requires only an endpoint and message, both GET
-and POST requests use the same interface. 
+The client is a thin interface that requires only an endpoint and message
 
 ```clojure
 ;An example send POST request:
