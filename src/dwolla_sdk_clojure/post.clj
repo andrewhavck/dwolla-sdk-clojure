@@ -4,12 +4,12 @@
 
 ;Funding Sources
 
+(defn- get_funding_id [req] (-> req :req :funding_id))
+
 (defn- funding_url [req end_point]
   (let [funding_id (get_funding_id req)]
     {:url (str domain "fundingsources/" funding_id "/" end_point)
      :post req}))
-
-(defn- get_funding_id [req] (-> req :req :funding_id))
 
 (defn- add_funding_source [req]
   {:url (str domain "fundingsources/")
