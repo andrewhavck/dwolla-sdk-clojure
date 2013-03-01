@@ -20,19 +20,18 @@ Require it in your application:
   (:require [dwolla-sdk-clojure.core :as dwolla]))
 ```
 
-The client is a thin interface that requires only an endpoint and message, both GET
-and POST requests use the same interface. 
+The client is a thin interface that requires only an endpoint and message
 
 ```clojure
 ;An example send POST request:
 
 (dwolla/api :send {:oauth_token "" :pin "" :destinationId "" :amount ""})
 
-An an account info GET request:
+;An an account info GET request:
 
 (dwolla/api :account_info {:oauth_token ""})
 
-A nearby GET request:
+;A nearby GET request:
 
 (dwolla/api :nearby {:client_id "" :client_secret "" :lat "" :long ""})
 ```
@@ -42,7 +41,7 @@ All results are returned as a Clojure map:
 ```clojure
 {:Response nil, :Message "Invalid access token.", :Success false, :Request-time 321 :Status 200}
 
-If the endpoint does not exist a generic error message is returned
+;If the endpoint does not exist a generic error message is returned
 
 {:Response nil, :Message "Invalid endpoint." :Success false :Request-time 0 :Status nil}
 ```
