@@ -51,7 +51,7 @@ All results are returned as a Clojure map:
 If the endpoint does not exist an error message is returned
 
 ```clojure
-{:Request-time 0 :Status "Failed" :Message "Invalid endpoint."}
+{:Response nil, :Message "Invalid endpoint." :Success false :Request-time 0 :Status nil}
 ```
 
 ## TODO: More examples

@@ -16,4 +16,4 @@
 
 (fact "Create useful json response for empty request"
       (response '()) =>
-      {:Request-time 0 :Status "Failed" :Message "Invalid endpoint."})
+      {:Response nil, :Message "Invalid endpoint." :Success false :Request-time 0 :Status nil})

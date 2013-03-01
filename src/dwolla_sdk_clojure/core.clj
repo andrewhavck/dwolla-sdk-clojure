@@ -24,7 +24,7 @@
 
 (defn response [resp]
   (if (empty? resp)
-    {:Request-time 0 :Status "Failed" :Message "Invalid endpoint."}
+    {:Response nil, :Message "Invalid endpoint." :Success false :Request-time 0 :Status nil}
     (apply create-resp resp)))
 
 (defn api [end_point req] (response (api-req {:end_point end_point :req req})))
