@@ -8,12 +8,13 @@
                               :Status (:status resp)}
                              (read-str (:body resp) :key-fn keyword)))
 
-(defmulti api-req (fn [call] (map? (:req call))))
-(defmethod api-req false [call] (client/get (api-get call)))
-(defmethod api-req true [call]
+(defn- get [call] (client/get (api-get call)))
+(defn- post [call]
   (let [request (api-post call)]
     (client/post (:url request)
                  {:body (-> request :post :req write-str)
                   :content-type :json})))
+
+(defn api-req [call] (take-while false) [get post])
 
 (defn api [end_point req] (response (api-req {:end_point end_point :req req})))

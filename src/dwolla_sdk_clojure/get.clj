@@ -38,6 +38,7 @@
 (defmethod api-get :basic_info [req] (basic_info (:req req)))
 (defmethod api-get :nearby [req] (nearby (:req req)))
 (defmethod api-get :pending [req] (pending (:req req)))
+(defmethod api-get :default [req] false)
 
 
 

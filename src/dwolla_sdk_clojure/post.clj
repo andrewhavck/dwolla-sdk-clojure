@@ -25,4 +25,5 @@
 (defmethod api-post :add_funding_source [req] (add req))
 (defmethod api-post :cancel [req] (cancel req))
 (defmethod api-post :send [req] (send- req))
+(defmethod api-post :default [req] false)
   
