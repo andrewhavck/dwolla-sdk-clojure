@@ -41,6 +41,15 @@
         (str domain "requests/?oauth_token=" token)))
 
 
+; Transactions
+
+(fact "Transactions by id has token"
+  (let [token "token" 
+        transaction_id "id"]
+    (api-get {:end_point :transactions_by_id 
+              :req {:oauth_token token :transaction_id transaction_id}}) =>
+    (str domain "transactions/" transaction_id "?oauth_token=" token)))
+
 ; Users
 
 (fact "Account info request has token"

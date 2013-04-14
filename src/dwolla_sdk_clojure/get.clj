@@ -18,7 +18,7 @@
   (str domain "fundingsources/?oauth_token=" token))
 
 
-;Requests
+; Requests
 
 (defn- request_by_id [{token :oauth_token request_id :request_id}]
   (str domain "requests/" request_id "?oauth_token=" token))
@@ -26,6 +26,21 @@
 (defn- pending [{token :oauth_token}]
   (str domain "requests/?oauth_token=" token))
 
+; Transactions
+
+(defmulti transactions_by_id :oauth_token)
+(defmethod transactions_by_id nil? [req] (transactions_by_id_client req))
+(defmethod transactions_by_id :default [req] (transactions_by_id_token req))
+
+(defn- 
+  transactions_by_id_client
+  [{client_id :client_id client_secret :client_secret transaction_id :transaction_id}]
+      (str domain "transactions/" transaction_id "?client_id=" client_id "client_secret=" client_secret))
+
+(defn- 
+  transactions_by_id_token
+  [{token :oauth_token transaction_id :transaction_id}]
+     (str domain "transactions/" transaction_id "?oauth_token=" token))
 
 ; Users
 
@@ -53,8 +68,9 @@
 (defmethod api-get :funding_sources_by_id [req] (funding_sources_by_id (:req req)))
 (defmethod api-get :funding_sources_listing [req] (funding_sources_listing (:req req)))
 (defmethod api-get :request_by_id [req] (request_by_id (:req req)))
-(defmethod api-get :account_info [req] (account_info  (:req req)))
+(defmethod api-get :pending [req] (pending (:req req)))
+(defmethod api-get :transactions_by_id [req] (transactions_by_id  (:req req)))
+(defmethod api-get :account_info [req] (account_info (:req req)))
 (defmethod api-get :basic_info [req] (basic_info (:req req)))
 (defmethod api-get :nearby [req] (nearby (:req req)))
-(defmethod api-get :pending [req] (pending (:req req)))
 (defmethod api-get :default [req] false)
