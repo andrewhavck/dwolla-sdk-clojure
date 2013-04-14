@@ -6,58 +6,58 @@
 ; Balance
 
 (defn- balance [{token :oauth_token}]
-  (str domain "balance?oauth_token=" token))
+  (uri "balance?oauth_token=" token))
 
 
 ; Funding sources
 
 (defn- funding_sources_by_id [{token :oauth_token funding_id :funding_id}]
-  (str domain "fundingsources/" funding_id "?oauth_token=" token))
+  (uri "fundingsources/" funding_id "?oauth_token=" token))
 
 (defn- funding_sources_listing [{token :oauth_token}]
-  (str domain "fundingsources/?oauth_token=" token))
+  (uri "fundingsources/?oauth_token=" token))
 
 
 ; Requests
 
 (defn- request_by_id [{token :oauth_token request_id :request_id}]
-  (str domain "requests/" request_id "?oauth_token=" token))
+  (uri "requests/" request_id "?oauth_token=" token))
 
 (defn- pending [{token :oauth_token}]
-  (str domain "requests/?oauth_token=" token))
+  (uri "requests/?oauth_token=" token))
 
 ; Transactions
+
+(defn- 
+  transactions_by_id_client
+  [{client_id :client_id client_secret :client_secret transaction_id :transaction_id}]
+      (uri "transactions/" transaction_id "?client_id=" client_id "client_secret=" client_secret))
+
+(defn- 
+  transactions_by_id_token
+  [{token :oauth_token transaction_id :transaction_id}]
+     (uri "transactions/" transaction_id "?oauth_token=" token))
 
 (defmulti transactions_by_id :oauth_token)
 (defmethod transactions_by_id nil? [req] (transactions_by_id_client req))
 (defmethod transactions_by_id :default [req] (transactions_by_id_token req))
 
-(defn- 
-  transactions_by_id_client
-  [{client_id :client_id client_secret :client_secret transaction_id :transaction_id}]
-      (str domain "transactions/" transaction_id "?client_id=" client_id "client_secret=" client_secret))
-
-(defn- 
-  transactions_by_id_token
-  [{token :oauth_token transaction_id :transaction_id}]
-     (str domain "transactions/" transaction_id "?oauth_token=" token))
-
 ; Users
 
 (defn- account_info [{token :oauth_token}]
-  (str domain "users/?oauth_token=" token))
+  (uri "users/?oauth_token=" token))
 
 (defn- basic_info [{client_id :client_id 
                     client_secret :client_secret
                     account_identifier :account_identifier}]
-  (str domain "users/" account_identifier "?client_id=" client_id
+  (uri "users/" account_identifier "?client_id=" client_id
        "&client_secret=" client_secret))
 
 (defn- nearby [{client_id :client_id
                 client_secret :client_secret
                 lat :lat 
                 long :long}]
-  (str domain "users/nearby?"
+  (uri "users/nearby?"
        "client_id=" client_id
        "&client_secret=" client_secret
        "&latitude=" lat

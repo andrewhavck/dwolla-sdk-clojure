@@ -3,7 +3,7 @@
   (:use [clojure.data.json :only [read-str write-str]]))
 
 (defn- post_msg [req type end_point id]
-    {:url (str domain type "/" id "/" end_point)
+    {:url (uri type "/" id "/" end_point)
      :post req})
 
 
@@ -13,7 +13,7 @@
   (post_msg req "fundingsources" end_point (-> req :req :funding_id)))
 
 (defn- add_funding_source [req]
-  {:url (str domain "fundingsources/")
+  {:url (uri "fundingsources/")
    :post req})
 
 (defn- deposit [req]
@@ -38,14 +38,14 @@
   (request_post req "fulfill"))
 
 (defn- request [req]
-  {:url (str domain "requests/")
+  {:url (uri "requests/")
    :post req})
 
 
 ;Transactions
 
 (defn- send- [req]
-  {:url (str domain "transactions/send")
+  {:url (uri "transactions/send")
    :post req})
 
 (defmulti api-post :end_point)
