@@ -42,8 +42,10 @@ All results are returned as a Clojure map:
 {:Response nil, :Message "Invalid endpoint." :Success false :Request-time 0 :Status nil}
 ```
 
-## TODO: More examples
+## Support
 
+- Dwolla API | api@dwolla.com | [@DwollaAPI](https://twitter.com/DwollaAPI)
+- Andrew Hauck | andrew@dwolla.com | [@andrewhavck](https://twitter.com/andrewhavck)
 
 ## License
 
