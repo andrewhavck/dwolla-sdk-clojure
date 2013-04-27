@@ -26,7 +26,7 @@ The client is a thin interface that requires only an endpoint and message
 ;An example send POST request:
 (dwolla/api :send {:oauth_token "" :pin "" :destinationId "" :amount ""})
 
-;An an account info GET request:
+;An account info GET request:
 (dwolla/api :account_info {:oauth_token ""})
 
 ;A nearby GET request:
