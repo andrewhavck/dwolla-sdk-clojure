@@ -2,6 +2,15 @@
 
 A simple Clojure library that wraps the [Dwolla API](http://developers.dwolla.com).
 
+## Installation
+
+`dwolla-sdk-clojure` is available as a Maven artifact from
+[Clojars](http://clojars.org/clj-http):
+
+```clojure
+[dwolla-sdk-clojure "0.1.0"]
+```
+
 ## Usage
 
 The main api functionality is provided by the
