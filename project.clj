@@ -1,4 +1,4 @@
-(defproject dwolla-sdk-clojure "0.1.0-SNAPSHOT"
+(defproject dwolla-sdk-clojure "0.1.0"
   :description "Dwolla API wrapper in Clojure"
   :url "http://github.com/andrewhavck/dwolla-sdk-clojure"
   :license {:name "The MIT License (MIT)"
