@@ -33,7 +33,7 @@ The client is a thin interface that requires only an endpoint and message
 (dwolla/api :nearby {:client_id "" :client_secret "" :lat "" :long ""})
 ```
 
-All results are returned as a Clojure map:
+All results are returned as a map:
 
 ```clojure
 {:Response nil, :Message "Invalid access token.", :Success false, :Request-time 321 :Status 200}
