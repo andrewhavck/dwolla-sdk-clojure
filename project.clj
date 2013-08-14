@@ -5,8 +5,10 @@
             :url "http://opensource.org/licenses/MIT"}
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [org.clojure/data.json "0.2.2"]
-                 [clj-http "0.7.6"]
-                 [midje "1.5.1"]
-                 [bultitude "0.2.2"]
-                 [lein-midje "3.0.1"]])
+                 [clj-http "0.7.6"]]
+  :profiles {:dev { :dependencies [[org.clojure/tools.namespace "0.2.4"]
+                                  [org.clojure/java.classpath "0.2.1"]
+                                  [midje "1.5.1"]
+                                  [bultitude "0.2.2"]
+                                  [lein-midje "3.1.1"]]}})
 
