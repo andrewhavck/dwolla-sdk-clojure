@@ -10,5 +10,5 @@
                                   [org.clojure/java.classpath "0.2.1"]
                                   [midje "1.5.1"]
                                   [bultitude "0.2.2"]
-                                  [lein-midje "3.1.1"]]}})
-
+                                  [lein-midje "3.1.1"]]
+                    :plugins [[lein-midje "3.1.1"]]}})
