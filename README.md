@@ -10,7 +10,7 @@ A simple Clojure library that wraps the [Dwolla API](http://developers.dwolla.co
 [Clojars](http://clojars.org/dwolla-sdk-clojure):
 
 ```clojure
-[dwolla-sdk-clojure "0.1.0"]
+[dwolla-sdk-clojure "0.1.1"]
 ```
 
 ## Usage
