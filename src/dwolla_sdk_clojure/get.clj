@@ -1,7 +1,6 @@
 (ns dwolla-sdk-clojure.get
-  (:use [dwolla-sdk-clojure.domain])
-  (:use [clojure.data.json :only [read-str]]))
-
+  (:use [dwolla-sdk-clojure.domain]
+        [clojure.data.json :only [read-str]]))
 
 ; Balance
 
