@@ -1,7 +1,7 @@
 (ns dwolla-sdk-clojure.get-test
-  (:use [dwolla-sdk-clojure.domain])
-  (:use [dwolla-sdk-clojure.get])
-  (:use [midje.sweet]))
+  (:use [dwolla-sdk-clojure.domain]
+        [dwolla-sdk-clojure.get]
+        [midje.sweet]))
 
 ; Balance
 

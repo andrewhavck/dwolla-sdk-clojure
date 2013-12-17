@@ -5,7 +5,6 @@
 
 (defn- query [& args] (str "?" (apply client/generate-query-string args)))
 
-
 ; Balance
 
 (defn- balance [{token :oauth_token}]

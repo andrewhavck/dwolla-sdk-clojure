@@ -13,3 +13,5 @@ pom.xml.asc
 *project.clj#
 .#project.clj
 .nrepl-port
+*.iml
+.idea/

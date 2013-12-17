@@ -1,7 +1,7 @@
 (ns dwolla-sdk-clojure.core
-  (:use [clojure.data.json :only [read-str write-str]])
-  (:use [dwolla-sdk-clojure.post])
-  (:use [dwolla-sdk-clojure.get])
+  (:use [clojure.data.json :only [read-str write-str]]
+        [dwolla-sdk-clojure.post]
+        [dwolla-sdk-clojure.get])
   (:require [clj-http.client :as client]))
 
 (defn create-resp [resp] 

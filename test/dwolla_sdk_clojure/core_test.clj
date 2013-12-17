@@ -1,7 +1,7 @@
 (ns dwolla-sdk-clojure.core-test
-  (:use [dwolla-sdk-clojure.domain])
-  (:use [dwolla-sdk-clojure.core])
-  (:use [midje.sweet]))
+  (:use [dwolla-sdk-clojure.domain]
+        [dwolla-sdk-clojure.core]
+        [midje.sweet]))
 
 (fact "Create useful json response"
   (create-resp {:request-time 500

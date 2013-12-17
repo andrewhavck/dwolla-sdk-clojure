@@ -1,6 +1,6 @@
 (ns dwolla-sdk-clojure.post
-  (:use [dwolla-sdk-clojure.domain])
-  (:use [clojure.data.json :only [read-str write-str]]))
+  (:use [dwolla-sdk-clojure.domain]
+        [clojure.data.json :only [read-str write-str]]))
 
 (defn- post_msg [req type end_point id]
     {:url (uri type "/" id "/" end_point)
