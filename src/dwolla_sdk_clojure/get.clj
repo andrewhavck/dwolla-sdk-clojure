@@ -52,18 +52,18 @@
 (defn- basic_info [{client_id :client_id
                     client_secret :client_secret
                     account_identifier :account_identifier}]
-  (uri "users/" account_identifier "?client_id=" client_id
-       "&client_secret=" client_secret))
+  (uri "users/" account_identifier
+       (query {"client_id" client_id "client_secret" client_secret})))
 
 (defn- nearby [{client_id :client_id
                 client_secret :client_secret
                 lat :lat
                 long :long}]
-  (uri "users/nearby?"
-       "client_id=" client_id
-       "&client_secret=" client_secret
-       "&latitude=" lat
-       "&longitude=" long))
+  (uri "users/nearby"
+       (query {"client_id" client_id
+               "client_secret" client_secret
+               "latitude" lat
+               "longitude" long})))
 
 (defmulti api-get :end_point)
 (defmethod api-get :balance [req] (balance (:req req)))
