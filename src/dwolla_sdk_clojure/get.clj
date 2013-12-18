@@ -1,41 +1,44 @@
 (ns dwolla-sdk-clojure.get
   (:use [dwolla-sdk-clojure.domain]
-        [clojure.data.json :only [read-str]]))
+        [clojure.data.json :only [read-str]]
+        [clj-http.client :only [generate-query-string]]))
+
+(defn- query [& args] (str "?" (apply generate-query-string args)))
 
 ; Balance
 
 (defn- balance [{token :oauth_token}]
-  (uri "balance?oauth_token=" token))
+  (uri "balance" (query {"oauth_token" token})))
 
 
 ; Funding sources
 
 (defn- funding_sources_by_id [{token :oauth_token funding_id :funding_id}]
-  (uri "fundingsources/" funding_id "?oauth_token=" token))
+  (uri "fundingsources/" funding_id (query {"oauth_token" token})))
 
 (defn- funding_sources_listing [{token :oauth_token}]
-  (uri "fundingsources/?oauth_token=" token))
+  (uri "fundingsources/" (query {"oauth_token" token})))
 
 
 ; Requests
 
 (defn- request_by_id [{token :oauth_token request_id :request_id}]
-  (uri "requests/" request_id "?oauth_token=" token))
+  (uri "requests/" request_id (query {"oauth_token" token})))
 
 (defn- pending [{token :oauth_token}]
-  (uri "requests/?oauth_token=" token))
+  (uri "requests/" (query {"oauth_token" token})))
 
 ; Transactions
 
-(defn- 
+(defn-
   transactions_by_id_client
   [{client_id :client_id client_secret :client_secret transaction_id :transaction_id}]
       (uri "transactions/" transaction_id "?client_id=" client_id "client_secret=" client_secret))
 
-(defn- 
+(defn-
   transactions_by_id_token
   [{token :oauth_token transaction_id :transaction_id}]
-     (uri "transactions/" transaction_id "?oauth_token=" token))
+     (uri "transactions/" transaction_id (query {"oauth_token" token})))
 
 (defmulti transactions_by_id :oauth_token)
 (defmethod transactions_by_id nil? [req] (transactions_by_id_client req))
@@ -44,23 +47,23 @@
 ; Users
 
 (defn- account_info [{token :oauth_token}]
-  (uri "users/?oauth_token=" token))
+  (uri "users/" (query {"oauth_token" token})))
 
-(defn- basic_info [{client_id :client_id 
+(defn- basic_info [{client_id :client_id
                     client_secret :client_secret
                     account_identifier :account_identifier}]
-  (uri "users/" account_identifier "?client_id=" client_id
-       "&client_secret=" client_secret))
+  (uri "users/" account_identifier
+       (query {"client_id" client_id "client_secret" client_secret})))
 
 (defn- nearby [{client_id :client_id
                 client_secret :client_secret
-                lat :lat 
+                lat :lat
                 long :long}]
-  (uri "users/nearby?"
-       "client_id=" client_id
-       "&client_secret=" client_secret
-       "&latitude=" lat
-       "&longitude=" long))
+  (uri "users/nearby"
+       (query {"client_id" client_id
+               "client_secret" client_secret
+               "latitude" lat
+               "longitude" long})))
 
 (defmulti api-get :end_point)
 (defmethod api-get :balance [req] (balance (:req req)))
