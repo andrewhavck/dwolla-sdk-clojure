@@ -1,7 +1,7 @@
 (ns dwolla-sdk-clojure.get
-  (:use [dwolla-sdk-clojure.domain])
-  (:use [clojure.data.json :only [read-str]])
-  (:use [clj-http.client :only [generate-query-string]]))
+  (:use [dwolla-sdk-clojure.domain]
+        [clojure.data.json :only [read-str]]
+        [clj-http.client :only [generate-query-string]]))
 
 (defn- query [& args] (str "?" (apply generate-query-string args)))
 
