@@ -1,9 +1,9 @@
 (ns dwolla-sdk-clojure.get
   (:use [dwolla-sdk-clojure.domain])
   (:use [clojure.data.json :only [read-str]])
-  (:require [clj-http.client :as client]))
+  (:use [clj-http.client :only [generate-query-string]]))
 
-(defn- query [& args] (str "?" (apply client/generate-query-string args)))
+(defn- query [& args] (str "?" (apply generate-query-string args)))
 
 ; Balance
 
