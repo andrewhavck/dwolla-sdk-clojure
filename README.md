@@ -1,6 +1,6 @@
 # `dwolla-sdk-clojure` 
 
-[![Build Status](https://travis-ci.org/andrewhavck/dwolla-sdk-clojure.png?branch=master)](https://travis-ci.org/andrewhavck/dwolla-sdk-clojure)
+[![Build Status](https://travis-ci.org/andrewhavck/dwolla-sdk-clojure.png?branch=master)](https://travis-ci.org/andrewhavck/dwolla-sdk-clojure) [![Dependencies Status](http://jarkeeper.com/andrewhavck/dwolla-sdk-clojure/status.png)](http://jarkeeper.com/andrewhavck/dwolla-sdk-clojure)
 
 A simple Clojure library that wraps the [Dwolla API](http://developers.dwolla.com).
 
