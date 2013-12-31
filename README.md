@@ -1,4 +1,4 @@
-# `dwolla-sdk-clojure` 
+# `dwolla-sdk-clojure`
 
 [![Build Status](https://travis-ci.org/andrewhavck/dwolla-sdk-clojure.png?branch=master)](https://travis-ci.org/andrewhavck/dwolla-sdk-clojure) [![Dependencies Status](http://jarkeeper.com/andrewhavck/dwolla-sdk-clojure/status.png)](http://jarkeeper.com/andrewhavck/dwolla-sdk-clojure)
 
@@ -57,6 +57,7 @@ All results are returned as a map:
 
 - Dwolla API | api@dwolla.com | [@DwollaAPI](https://twitter.com/DwollaAPI)
 - Andrew Hauck | andrew@dwolla.com | [@andrewhavck](https://twitter.com/andrewhavck)
+- Fredrick Galoso | fred@dwolla.com | [@wayoutmind](https://twitter.com/wayoutmind)
 
 ## License
 
