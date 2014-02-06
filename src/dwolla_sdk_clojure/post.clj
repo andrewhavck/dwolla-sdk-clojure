@@ -1,10 +1,11 @@
 (ns dwolla-sdk-clojure.post
   (:use [dwolla-sdk-clojure.domain]
+        [clojure.core.match :only [match]]
         [clojure.data.json :only [read-str write-str]]))
 
 (defn- post_msg [req type end_point id]
-    {:url (uri type "/" id "/" end_point)
-     :post req})
+  {:url  (uri type "/" id "/" end_point)
+   :post req})
 
 
 ;Funding Sources
@@ -13,7 +14,7 @@
   (post_msg req "fundingsources" end_point (-> req :req :funding_id)))
 
 (defn- add_funding_source [req]
-  {:url (uri "fundingsources/")
+  {:url  (uri "fundingsources/")
    :post req})
 
 (defn- deposit [req]
@@ -38,24 +39,24 @@
   (request_post req "fulfill"))
 
 (defn- request [req]
-  {:url (uri "requests/")
+  {:url  (uri "requests/")
    :post req})
 
 
 ;Transactions
 
 (defn- send- [req]
-  {:url (uri "transactions/send")
+  {:url  (uri "transactions/send")
    :post req})
 
-(defmulti api-post :end_point)
-(defmethod api-post :add_funding_source [req] (add_funding_source req))
-(defmethod api-post :deposit [req] (deposit req))
-(defmethod api-post :verify [req] (verify req))
-(defmethod api-post :withdraw [req] (withdraw req))
-(defmethod api-post :cancel [req] (cancel req))
-(defmethod api-post :fulfill [req] (fulfill req))
-(defmethod api-post :request [req] (request req))
-(defmethod api-post :send [req] (send- req))
-(defmethod api-post :default [req] false)
-  
+(defn api-post [req]
+  (match [req]
+         [{:end_point :add_funding_source}] (add_funding_source req)
+         [{:end_point :deposit}] (deposit req)
+         [{:end_point :verify}] (verify req)
+         [{:end_point :withdraw}] (withdraw req)
+         [{:end_point :cancel}] (cancel req)
+         [{:end_point :fulfill}] (fulfill req)
+         [{:end_point :request}] (request req)
+         [{:end_point :send}] (send- req)
+         :else false))

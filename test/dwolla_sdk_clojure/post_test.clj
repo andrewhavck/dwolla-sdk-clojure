@@ -1,7 +1,7 @@
 (ns dwolla-sdk-clojure.post-test
-  (:use [dwolla-sdk-clojure.domain]
-        [dwolla-sdk-clojure.post]
-        [midje.sweet]))
+  (:use [dwolla-sdk-clojure.domain])
+  (:use [dwolla-sdk-clojure.post])
+  (:use [midje.sweet]))
 
 (defn- make-post [end_point req] {:end_point end_point :req req})
 (defn- get-post [post] (-> post :post :req))
