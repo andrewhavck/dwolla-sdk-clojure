@@ -49,14 +49,15 @@
   {:url  (uri "transactions/send")
    :post req})
 
-(defn api-post [req]
-  (match [req]
-         [{:end_point :add_funding_source}] (add_funding_source req)
-         [{:end_point :deposit}] (deposit req)
-         [{:end_point :verify}] (verify req)
-         [{:end_point :withdraw}] (withdraw req)
-         [{:end_point :cancel}] (cancel req)
-         [{:end_point :fulfill}] (fulfill req)
-         [{:end_point :request}] (request req)
-         [{:end_point :send}] (send- req)
-         :else false))
+(defn api-post [msg]
+  (if-let [fun (match [msg]
+                      [{:end_point :add_funding_source}] add_funding_source
+                      [{:end_point :deposit}] deposit
+                      [{:end_point :verify}] verify
+                      [{:end_point :withdraw}] withdraw
+                      [{:end_point :cancel}] cancel
+                      [{:end_point :fulfill}] fulfill
+                      [{:end_point :request}] request
+                      [{:end_point :send}] send-
+                      :else false)]
+    (fun msg)))

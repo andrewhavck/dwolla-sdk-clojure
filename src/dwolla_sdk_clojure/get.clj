@@ -83,18 +83,18 @@
                             [:longitude "longitude"]]))))
 
 (defn api-get [msg]
-  (let [req (:req msg)]
-    (match [msg]
-           [{:end_point :balance}] (balance req)
-           [{:end_point :contacts}] (contacts req)
-           [{:end_point :funding_sources_by_id}] (funding_sources_by_id req)
-           [{:end_point :funding_sources_listing}] (funding_sources_listing req)
-           [{:end_point :request_by_id}] (request_by_id req)
-           [{:end_point :pending}] (pending req)
-           [{:end_point :transactions_by_id}] (transactions_by_id req)
-           [{:end_point :transactions}] (transactions req)
-           [{:end_point :transaction_stats}] (transaction_stats req)
-           [{:end_point :account_info}] (account_info req)
-           [{:end_point :basic_info}] (basic_info req)
-           [{:end_point :nearby}] (nearby req)
-           :else false)))
+  (if-let [fun (match [msg]
+                      [{:end_point :balance}] balance
+                      [{:end_point :contacts}] contacts
+                      [{:end_point :funding_sources_by_id}] funding_sources_by_id
+                      [{:end_point :funding_sources_listing}] funding_sources_listing
+                      [{:end_point :request_by_id}] request_by_id
+                      [{:end_point :pending}] pending
+                      [{:end_point :transactions_by_id}] transactions_by_id
+                      [{:end_point :transactions}] transactions
+                      [{:end_point :transaction_stats}] transaction_stats
+                      [{:end_point :account_info}] account_info
+                      [{:end_point :basic_info}] basic_info
+                      [{:end_point :nearby}] nearby
+                      :else false)]
+    (-> msg :req fun)))
