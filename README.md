@@ -9,7 +9,9 @@ A simple Clojure library that wraps the [Dwolla API](http://developers.dwolla.co
 `dwolla-sdk-clojure` is available as a Maven artifact from
 [Clojars](http://clojars.org/dwolla-sdk-clojure):
 
-[![Clojars Project](http://clojars.org/dwolla-sdk-clojure/latest-version.svg)](http://clojars.org/dwolla-sdk-clojure)
+```clojure
+[dwolla-sdk-clojure "0.1.2"]
+```
 
 ## Usage
 
