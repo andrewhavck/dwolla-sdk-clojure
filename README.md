@@ -61,7 +61,7 @@ All results are returned as a map:
 
 ## License
 
-Copyright © 2013 Dwolla
+Copyright © 2015 Dwolla
 
 Released under the MIT License:
 <http://www.opensource.org/licenses/mit-license.php>
